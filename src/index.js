@@ -1,3 +1,4 @@
+import { createDecrement, createIncrement } from './actions'
 import { Action, rootReducer } from './root-reducer'
 import { createStore } from './store'
 import './styles.css'
@@ -33,11 +34,11 @@ store.subscribe(() => {
 })
 
 $addBtn.addEventListener('click', () => {
-  store.dispatch(Action.INCREMENT)
+  store.dispatch(createIncrement())
 })
 
 $subBtn.addEventListener('click', () => {
-  store.dispatch(Action.DECREMENT)
+  store.dispatch(createDecrement())
 })
 
 $asyncBtn.addEventListener('click', () => {

@@ -6,7 +6,7 @@ const Action = {
 }
 
 const counterReducer = (state, action) => {
-  switch (action) {
+  switch (action.type) {
     case Action.INCREMENT:
       return { ...state, counter: state.counter + 1 }
     case Action.DECREMENT:
