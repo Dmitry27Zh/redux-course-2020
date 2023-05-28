@@ -12,10 +12,6 @@ const counterReducer = (state, action) => {
       return { ...state, counter: state.counter + 1 }
     case Action.DECREMENT:
       return { ...state, counter: state.counter - 1 }
-    case Action.ASYNC_INCREMENT:
-      setTimeout(() => {
-        return { ...state, counter: state.counter - 1 }
-      }, 2000)
     default:
       return state
   }

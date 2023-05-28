@@ -1,7 +1,8 @@
 import { createAsyncIncrement, createDecrement, createIncrement, createInit } from './actions'
 import { rootReducer } from './root-reducer'
 // import { createStore } from './store'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import './styles.css'
 
 const Theme = {
@@ -19,7 +20,7 @@ const initialState = {
   counter: 0,
   theme: Theme.LIGHT,
 }
-const store = createStore(rootReducer, initialState)
+const store = createStore(rootReducer, initialState, applyMiddleware(thunk))
 
 const renderCounter = () => {
   $counter.textContent = store.getState().counter

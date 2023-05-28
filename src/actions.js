@@ -19,7 +19,9 @@ export const createDecrement = () => {
 }
 
 export const createAsyncIncrement = () => {
-  return {
-    type: Action.ASYNC_INCREMENT,
+  return function (dispatch) {
+    setTimeout(() => {
+      dispatch(createIncrement())
+    }, 2000)
   }
 }
