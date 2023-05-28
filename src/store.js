@@ -1,5 +1,5 @@
-export const createStore = (state, rootReducer) => {
-  state = rootReducer(state, '__CREATION__')
+export const createStore = (rootReducer, initialState) => {
+  let state = rootReducer(initialState, '__CREATION__')
   const listeners = []
 
   return {

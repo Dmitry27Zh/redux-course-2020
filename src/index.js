@@ -1,5 +1,5 @@
-import { createDecrement, createIncrement } from './actions'
-import { Action, rootReducer } from './root-reducer'
+import { createAsyncIncrement, createDecrement, createIncrement, createInit } from './actions'
+import { rootReducer } from './root-reducer'
 import { createStore } from './store'
 import './styles.css'
 
@@ -18,7 +18,7 @@ const initialState = {
   counter: 0,
   theme: Theme.LIGHT,
 }
-const store = createStore(initialState, rootReducer)
+const store = createStore(rootReducer, initialState)
 
 const renderCounter = () => {
   $counter.textContent = store.getState().counter
@@ -42,8 +42,7 @@ $subBtn.addEventListener('click', () => {
 })
 
 $asyncBtn.addEventListener('click', () => {
-  counter++
-  renderCounter()
+  store.dispatch(createAsyncIncrement())
 })
 
 $themeBtn.addEventListener('click', () => {
@@ -51,4 +50,4 @@ $themeBtn.addEventListener('click', () => {
   renderTheme()
 })
 
-store.dispatch(Action.INIT)
+store.dispatch(createInit())
