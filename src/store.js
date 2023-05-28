@@ -1,5 +1,5 @@
 export const createStore = (state, rootReducer) => {
-  state = rootReducer(state)
+  state = rootReducer(state, '__CREATION__')
   const listeners = []
 
   return {
@@ -10,6 +10,10 @@ export const createStore = (state, rootReducer) => {
 
     subscribe(listener) {
       listeners.push(listener)
+    },
+
+    getState() {
+      return state
     },
   }
 }

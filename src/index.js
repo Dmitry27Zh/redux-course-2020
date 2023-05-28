@@ -1,36 +1,43 @@
-import { rootReducer } from './root-reducer'
+import { Action, rootReducer } from './root-reducer'
 import { createStore } from './store'
 import './styles.css'
 
-let counter = 0
-let currentTheme = 'light'
-const $counter = document.getElementById('counter')
+const Theme = {
+  LIGHT: 'light',
+  DARK: 'dark',
+}
 
+const $counter = document.getElementById('counter')
 const $addBtn = document.getElementById('add')
 const $subBtn = document.getElementById('sub')
 const $asyncBtn = document.getElementById('async')
 const $themeBtn = document.getElementById('theme')
 
-const initialState = {}
+const initialState = {
+  counter: 0,
+  theme: Theme.LIGHT,
+}
 const store = createStore(initialState, rootReducer)
 
 const renderCounter = () => {
-  $counter.textContent = counter
+  $counter.textContent = store.getState().counter
 }
 
 const renderTheme = () => {
-  document.body.classList.toggle('light', currentTheme === 'light')
-  document.body.classList.toggle('dark', currentTheme === 'dark')
+  document.body.classList.toggle(Theme.LIGHT, store.getState().theme === Theme.LIGHT)
+  document.body.classList.toggle(Theme.DARK, store.getState().theme === Theme.DARK)
 }
 
-$addBtn.addEventListener('click', () => {
-  counter++
+store.subscribe(() => {
   renderCounter()
 })
 
+$addBtn.addEventListener('click', () => {
+  store.dispatch(Action.INCREMENT)
+})
+
 $subBtn.addEventListener('click', () => {
-  counter--
-  renderCounter()
+  store.dispatch(Action.DECREMENT)
 })
 
 $asyncBtn.addEventListener('click', () => {
@@ -43,5 +50,4 @@ $themeBtn.addEventListener('click', () => {
   renderTheme()
 })
 
-renderCounter()
-renderTheme()
+store.dispatch(Action.INIT)
