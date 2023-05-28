@@ -1,6 +1,7 @@
 import { createAsyncIncrement, createDecrement, createIncrement, createInit } from './actions'
 import { rootReducer } from './root-reducer'
-import { createStore } from './store'
+// import { createStore } from './store'
+import { createStore } from 'redux'
 import './styles.css'
 
 const Theme = {
