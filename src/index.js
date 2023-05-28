@@ -1,3 +1,5 @@
+import { rootReducer } from './root-reducer'
+import { createStore } from './store'
 import './styles.css'
 
 let counter = 0
@@ -8,6 +10,9 @@ const $addBtn = document.getElementById('add')
 const $subBtn = document.getElementById('sub')
 const $asyncBtn = document.getElementById('async')
 const $themeBtn = document.getElementById('theme')
+
+const initialState = {}
+const store = createStore(initialState, rootReducer)
 
 const renderCounter = () => {
   $counter.textContent = counter
